@@ -32,10 +32,10 @@ namespace CommandAPI.Controllers
         {
             var commandItemsId = _repository.GetCommandByID(id);
 
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // if (id == null)
+            // {
+            //     return NotFound();
+            // }
                 return Ok(commandItemsId);
             
         }
