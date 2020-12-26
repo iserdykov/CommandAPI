@@ -15,14 +15,30 @@ namespace CommandAPI.Controllers
             _repository = repository;
         }
         [HttpGet]
-        ActionResult<IEnumerable<Command>> GetAllCommands()
+        public ActionResult<IEnumerable<Command>> GetAllCommands()
         {
            var commandItems = _repository.GetAllCommands();
 
             return Ok(commandItems);
             
         }
+    
+        // public ActionResult<IEnumerable<string>> Get(){
+        //     return new string[] {"This","is","hard" , "code"};
+    
+        // }
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Command>> GetCommandByID(int id)
+        {
+            var commandItemsId = _repository.GetCommandByID(id);
 
+            if (id == null)
+            {
+                return NotFound();
+            }
+                return Ok(commandItemsId);
+            
+        }
 
     }
 }
