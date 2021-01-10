@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommandAPI.Models
 {
+   
     public class Command
     {
         [Key]
