@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using CommandAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommandAPI.Data
 {
@@ -22,6 +24,13 @@ namespace CommandAPI.Data
         public IEnumerable<Command> GetAllCommands()
         {
             return _context.CommandItems;
+        }
+
+        public async IAsyncEnumerable<Command> GetAllCommandsAsync()
+        {
+            var getAllAsync = await _context.CommandItems.ToListAsync();
+            foreach (var command in getAllAsync) 
+                yield return command;
         }
 
         public Command GetCommandByID(int id)

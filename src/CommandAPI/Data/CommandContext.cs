@@ -1,3 +1,4 @@
+using System;
 using CommandAPI.Models;
 using Microsoft.EntityFrameworkCore;
 

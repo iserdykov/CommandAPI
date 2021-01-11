@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using CommandAPI.Data;
@@ -21,17 +22,33 @@ namespace CommandAPI.Controllers
             _repository = repository;
             _mapper = mapper;
             }
-            [HttpGet]
-            public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
-            {
-                var commandItems = _repository.GetAllCommands();
-                return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
-            }
-                    // public ActionResult<IEnumerable<string>> Get(){
-                //     return new string[] {"This","is","hard" , "code"};
-    
-                // }
-            [HttpGet("{id}", Name = "GetCommandById")]
+        //==================================================
+        //not async httpget
+        //[HttpGet]
+        //public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
+        //{
+        //    var commandItems = _repository.GetAllCommands();
+        //    return NoContent();
+        //    //return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
+        //}
+        //====================================================
+        //====================================================
+        //async httpget
+        [HttpGet]
+             public async Task<OkObjectResult> GetAllCommand()
+             {
+                 var commandItems = _repository.GetAllCommandsAsync();
+                 return Ok(commandItems);
+                 //return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
+
+             }
+        //======================================================
+        //
+        // public ActionResult<IEnumerable<string>> Get(){
+        //     return new string[] {"This","is","hard" , "code"};
+
+        // }
+        [HttpGet("{id}", Name = "GetCommandById")]
             public ActionResult<CommandReadDto> GetCommandByID(int id)
             {
                 var commandItemsId = _repository.GetCommandByID(id);

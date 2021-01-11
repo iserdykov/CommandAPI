@@ -37,6 +37,11 @@ namespace CommandAPI.Data
             return commands;
         }
 
+        public IAsyncEnumerable<Command> GetAllCommandsAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Command GetCommandByID(int id)
         {
         return new Command {Id = 0, 
